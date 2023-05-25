@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "cesium.gltf-vscode",
+        "dtoplak.vscode-glsllint",
+        "Loonatic.panda3d-egg-syntax",
+        "ms-python.python",
+        "slevesque.shader",
+    ]
+}
