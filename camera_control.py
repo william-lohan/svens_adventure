@@ -42,6 +42,9 @@ class CameraControl(Entity):
     # must be called manually / in main.py update loop for now
     def update(self):
 
+        # update position
+        self.position = lerp(self.position, self.camera_target.world_position, CAM_SPEED * time.dt)
+
         # update y rotation
         self.rotation_y += mouse.velocity[0] * SENSITIVITY
 
@@ -49,8 +52,9 @@ class CameraControl(Entity):
         self.rotation_x -= mouse.velocity[1] * SENSITIVITY
         self.rotation_x = clamp(self.rotation_x, -90, 90)
 
-        # update position
-        self.position = lerp(self.position, self.camera_target.world_position, CAM_SPEED * time.dt)
-
         self.current_target.set_control_perspective(self.rotation_y)
+
+        print(mouse.velocity)
+        print(self.rotation)
+        print(self.position)
 

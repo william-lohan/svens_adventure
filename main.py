@@ -12,10 +12,11 @@ if __name__ == "__main__":
     app.render.setShader(shader)
 
     # sky
-    sky = Sky(texture=None, shader=UShader(language=UShader.GLSL, vertex="shaders/sky.vert", fragment="shaders/sky.frag"))
-    sky.set_shader_input("groundColor", color.rgb(139, 69, 19))  # Brown color for the ground
-    sky.set_shader_input("topColor", color.rgb(135, 206, 235))  # Light blue color for the top of the sky
-    sky.set_shader_input("horizonColor", color.rgb(70, 130, 180))  # Dark blue color for the horizon
+    # sky = Sky(texture=None, shader=UShader(language=UShader.GLSL, vertex="shaders/sky.vert", fragment="shaders/sky.frag"))
+    # sky.set_shader_input("groundColor", color.rgb(139, 69, 19))  # Brown color for the ground
+    # sky.set_shader_input("topColor", color.rgb(135, 206, 235))  # Light blue color for the top of the sky
+    # sky.set_shader_input("horizonColor", color.rgb(70, 130, 180))  # Dark blue color for the horizon
+    sky = Sky()
 
     #entities
     floor = Floor()
