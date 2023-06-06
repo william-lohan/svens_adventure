@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cq73db250ih8e"]
+
+[ext_resource type="Shader" path="res://shaders/jitter_unlit.gdshader" id="1_o7ho6"]
+[ext_resource type="Texture2D" uid="uid://2x5s22ifa664" path="res://models/textures/lowpolycat.png" id="2_bwmgc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_o7ho6")
+shader_parameter/texture_albedo = ExtResource("2_bwmgc")
