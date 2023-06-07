@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch34dy78m4kgd"]
+
+[ext_resource type="Script" path="res://scripts/AnimateThenDestruct.cs" id="1_70jus"]
+[ext_resource type="PackedScene" uid="uid://bjuqt7fb0b2la" path="res://models/jump_effect.blend" id="2_bdwh3"]
+
+[node name="JumpEffectPrefab" type="Node3D" node_paths=PackedStringArray("hasAnimation")]
+script = ExtResource("1_70jus")
+hasAnimation = NodePath("JumpEffect")
+animationName = "JumpEffectAction"
+
+[node name="JumpEffect" parent="." instance=ExtResource("2_bdwh3")]

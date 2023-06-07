@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode cull_disabled, specular_disabled, skip_vertex_transform, shadows_disabled;
 
-uniform sampler2D texture_albedo;
+uniform sampler2D texture_albedo: source_color, filter_nearest;
 
 float snap(float value)
 {

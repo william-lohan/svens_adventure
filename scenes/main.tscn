@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bs0v6aaictp3y"]
+[gd_scene load_steps=16 format=3 uid="uid://bs0v6aaictp3y"]
 
 [ext_resource type="PackedScene" uid="uid://rd82pgxdr838" path="res://models/floor.blend" id="1_be2v3"]
 [ext_resource type="Shader" path="res://shaders/scanlines.gdshader" id="2_a4k16"]
@@ -9,6 +9,7 @@
 [ext_resource type="Environment" uid="uid://d3ofrw12vtl6v" path="res://environment/environment.tres" id="3_phsfk"]
 [ext_resource type="Script" path="res://scripts/RotateCamera.cs" id="7_42sbr"]
 [ext_resource type="Script" path="res://scripts/Player.cs" id="7_a7f3t"]
+[ext_resource type="PackedScene" uid="uid://y20b2sj0u0fm" path="res://models/crate.blend" id="10_kc0ud"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h3uac"]
 shader = ExtResource("2_a4k16")
@@ -20,7 +21,16 @@ shader = ExtResource("2_qhfji")
 shader_parameter/strength = 0.2
 shader_parameter/mask_texture = ExtResource("3_jtbof")
 
-[node name="root" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m1r0k"]
+radius = 0.4
+height = 1.5
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xsek8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qcegi"]
+size = Vector3(2, 2, 2)
+
+[node name="Root" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_phsfk")
@@ -46,14 +56,34 @@ grow_vertical = 2
 texture = ExtResource("3_jtbof")
 stretch_mode = 1
 
-[node name="floor" parent="." instance=ExtResource("1_be2v3")]
-
-[node name="sven" parent="." instance=ExtResource("2_j276v")]
+[node name="Player" type="CharacterBody3D" parent="."]
 script = ExtResource("7_a7f3t")
 
-[node name="CameraPivot" type="Node3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_m1r0k")
+
+[node name="sven" parent="Player" instance=ExtResource("2_j276v")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CameraPivot" type="Node3D" parent="Player"]
 script = ExtResource("7_42sbr")
 speed = 0.5
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.932324, 0.361625, 0, -0.361625, 0.932324, 0, 1.728, 2)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_xsek8")
+
+[node name="floor" parent="Floor" instance=ExtResource("1_be2v3")]
+
+[node name="Crate" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.79038, 1, 2.96049)
+
+[node name="crate" parent="Crate" instance=ExtResource("10_kc0ud")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Crate"]
+shape = SubResource("BoxShape3D_qcegi")

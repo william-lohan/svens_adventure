@@ -439,3 +439,5 @@ mono_crash.*.json
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/csharp,dotnetcore,godot,visualstudiocode
+
+*.blend[0-9]*
