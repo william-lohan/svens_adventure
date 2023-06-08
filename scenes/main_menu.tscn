@@ -1,0 +1,119 @@
+[gd_scene load_steps=12 format=3 uid="uid://civu8xv6jicq0"]
+
+[ext_resource type="Texture2D" uid="uid://x1p0pgtcxq" path="res://textures/title_texture.png" id="1_0ecel"]
+[ext_resource type="Script" path="res://scripts/MainMenu.cs" id="1_b0ehu"]
+[ext_resource type="Environment" uid="uid://d3ofrw12vtl6v" path="res://environment/environment.tres" id="1_jb7a4"]
+[ext_resource type="Script" path="res://scripts/DayNight.cs" id="2_15xgk"]
+[ext_resource type="Script" path="res://scripts/RotateCamera.cs" id="2_ism1x"]
+[ext_resource type="PackedScene" uid="uid://vto3a3h1xi4i" path="res://models/world.blend" id="2_y3ehq"]
+[ext_resource type="Shader" path="res://shaders/scanlines.gdshader" id="3_q4svr"]
+[ext_resource type="Shader" path="res://shaders/crt_mask.gdshader" id="4_pwwug"]
+[ext_resource type="Texture2D" uid="uid://drfoblgtpn5nt" path="res://textures/CRT12x6xcfl.png" id="5_xxc3m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ho6hx"]
+shader = ExtResource("3_q4svr")
+shader_parameter/strength = 0.2
+shader_parameter/height = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkne3"]
+shader = ExtResource("4_pwwug")
+shader_parameter/strength = 0.2
+shader_parameter/mask_texture = ExtResource("5_xxc3m")
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_jb7a4")
+script = ExtResource("2_15xgk")
+
+[node name="PostProcessingLayer" type="CanvasLayer" parent="."]
+
+[node name="Scanlines" type="ColorRect" parent="PostProcessingLayer"]
+material = SubResource("ShaderMaterial_ho6hx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CRTMask" type="TextureRect" parent="PostProcessingLayer"]
+material = SubResource("ShaderMaterial_gkne3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_xxc3m")
+stretch_mode = 1
+
+[node name="CameraPivot" type="Node3D" parent="."]
+script = ExtResource("2_ism1x")
+speed = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+
+[node name="world" parent="." instance=ExtResource("2_y3ehq")]
+
+[node name="Menu" type="Control" parent="." node_paths=PackedStringArray("firstControl")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b0ehu")
+firstControl = NodePath("VBoxContainer/StartButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Menu/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_0ecel")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -118.0
+offset_right = 33.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../OptionsButton")
+focus_next = NodePath("../OptionsButton")
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../StartButton")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../OptionsButton")
+focus_previous = NodePath("../OptionsButton")
+text = "Quit"
+
+[connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="." method="_OnStartButtonPressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/OptionsButton" to="Menu" method="_OnOptionsButtonPressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="Menu" method="_OnQuitButtonPressed"]

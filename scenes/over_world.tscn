@@ -1,25 +1,26 @@
-[gd_scene load_steps=16 format=3 uid="uid://bs0v6aaictp3y"]
+[gd_scene load_steps=18 format=3 uid="uid://bs0v6aaictp3y"]
 
-[ext_resource type="PackedScene" uid="uid://rd82pgxdr838" path="res://models/floor.blend" id="1_be2v3"]
-[ext_resource type="Shader" path="res://shaders/scanlines.gdshader" id="2_a4k16"]
-[ext_resource type="PackedScene" uid="uid://cnnbw0d0cvc7p" path="res://models/sven.blend" id="2_j276v"]
-[ext_resource type="Shader" path="res://shaders/crt_mask.gdshader" id="2_qhfji"]
-[ext_resource type="Script" path="res://scripts/DayNight.cs" id="2_srsvt"]
-[ext_resource type="Texture2D" uid="uid://drfoblgtpn5nt" path="res://textures/CRT12x6xcfl.png" id="3_jtbof"]
-[ext_resource type="Environment" uid="uid://d3ofrw12vtl6v" path="res://environment/environment.tres" id="3_phsfk"]
-[ext_resource type="Script" path="res://scripts/Player.cs" id="7_a7f3t"]
-[ext_resource type="Script" path="res://scripts/CameraControl.cs" id="8_mtu4l"]
-[ext_resource type="PackedScene" uid="uid://y20b2sj0u0fm" path="res://models/crate.blend" id="10_kc0ud"]
+[ext_resource type="Environment" uid="uid://d3ofrw12vtl6v" path="res://environment/environment.tres" id="1_0umo5"]
+[ext_resource type="Script" path="res://scripts/DayNight.cs" id="2_0lm1r"]
+[ext_resource type="Shader" path="res://shaders/scanlines.gdshader" id="3_l0x3k"]
+[ext_resource type="Shader" path="res://shaders/crt_mask.gdshader" id="4_6iuwc"]
+[ext_resource type="Texture2D" uid="uid://drfoblgtpn5nt" path="res://textures/CRT12x6xcfl.png" id="5_qc4pm"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="6_ffrol"]
+[ext_resource type="PackedScene" uid="uid://cnnbw0d0cvc7p" path="res://models/sven.blend" id="7_uv0rw"]
+[ext_resource type="Script" path="res://scripts/CameraControl.cs" id="8_nkirq"]
+[ext_resource type="PackedScene" uid="uid://rd82pgxdr838" path="res://models/floor.blend" id="9_kp68f"]
+[ext_resource type="PackedScene" uid="uid://y20b2sj0u0fm" path="res://models/crate.blend" id="10_yba55"]
+[ext_resource type="PackedScene" uid="uid://vto3a3h1xi4i" path="res://models/world.blend" id="11_tymxj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h3uac"]
-shader = ExtResource("2_a4k16")
+shader = ExtResource("3_l0x3k")
 shader_parameter/strength = 0.2
 shader_parameter/height = 3.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w6r2p"]
-shader = ExtResource("2_qhfji")
+shader = ExtResource("4_6iuwc")
 shader_parameter/strength = 0.2
-shader_parameter/mask_texture = ExtResource("3_jtbof")
+shader_parameter/mask_texture = ExtResource("5_qc4pm")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m1r0k"]
 radius = 0.4
@@ -30,11 +31,13 @@ height = 1.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_qcegi"]
 size = Vector3(2, 2, 2)
 
-[node name="Root" type="Node3D"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y2fsq"]
+
+[node name="OverWorld" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("3_phsfk")
-script = ExtResource("2_srsvt")
+environment = ExtResource("1_0umo5")
+script = ExtResource("2_0lm1r")
 
 [node name="PostProcessingLayer" type="CanvasLayer" parent="."]
 
@@ -45,6 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="CRTMask" type="TextureRect" parent="PostProcessingLayer"]
 material = SubResource("ShaderMaterial_w6r2p")
@@ -53,22 +57,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_jtbof")
+mouse_filter = 2
+texture = ExtResource("5_qc4pm")
 stretch_mode = 1
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["Player"]]
-script = ExtResource("7_a7f3t")
+script = ExtResource("6_ffrol")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_m1r0k")
 
-[node name="sven" parent="Player" instance=ExtResource("2_j276v")]
+[node name="sven" parent="Player" instance=ExtResource("7_uv0rw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="CameraControl" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("8_mtu4l")
+script = ExtResource("8_nkirq")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraControl"]
 spring_length = 2.0
@@ -79,16 +84,25 @@ spring_length = 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
 [node name="Floor" type="StaticBody3D" parent="."]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_xsek8")
 
-[node name="floor" parent="Floor" instance=ExtResource("1_be2v3")]
+[node name="floor" parent="Floor" instance=ExtResource("9_kp68f")]
 
 [node name="Crate" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.79038, 1, 2.96049)
+visible = false
 
-[node name="crate" parent="Crate" instance=ExtResource("10_kc0ud")]
+[node name="crate" parent="Crate" instance=ExtResource("10_yba55")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Crate"]
 shape = SubResource("BoxShape3D_qcegi")
+
+[node name="World" type="StaticBody3D" parent="."]
+
+[node name="world" parent="World" instance=ExtResource("11_tymxj")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World"]
+shape = SubResource("ConcavePolygonShape3D_y2fsq")

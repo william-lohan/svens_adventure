@@ -5,7 +5,7 @@ uniform sampler2D texture_albedo: source_color, filter_nearest;
 
 float snap(float value)
 {
-    float snapScale = 100.0f;
+    float snapScale = 50.0f;
     return floor(value * snapScale)/snapScale;
 }
 

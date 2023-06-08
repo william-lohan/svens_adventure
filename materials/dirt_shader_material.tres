@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c7mv1s58e2n87"]
+
+[ext_resource type="Shader" path="res://shaders/jitter_unlit.gdshader" id="1_n84bd"]
+[ext_resource type="Texture2D" uid="uid://dadqyaht1dnnr" path="res://models/textures/dirt_texture.png" id="2_gn5iw"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_n84bd")
+shader_parameter/texture_albedo = ExtResource("2_gn5iw")

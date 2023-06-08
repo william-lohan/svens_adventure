@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://fpel5uq0oueh"]
+
+[node name="OptionsMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="OptionsTitle" type="Label" parent="OptionsVBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Options"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="OptionsVBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="MusicLabel" type="Label" parent="OptionsVBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Music:"
+horizontal_alignment = 2
+
+[node name="MusicHSlider" type="HSlider" parent="OptionsVBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SFXLabel" type="Label" parent="OptionsVBoxContainer/GridContainer"]
+layout_mode = 2
+text = "SFX:"
+horizontal_alignment = 2
+
+[node name="SFXHSlider" type="HSlider" parent="OptionsVBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UpLabel" type="Label" parent="OptionsVBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Up:"
+horizontal_alignment = 2
+
+[node name="BackButton" type="Button" parent="OptionsVBoxContainer"]
+layout_mode = 2
+text = "Back
+"

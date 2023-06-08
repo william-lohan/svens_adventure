@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c23v53vtogn84"]
+
+[ext_resource type="Shader" path="res://shaders/jitter_unlit.gdshader" id="1_tvojl"]
+[ext_resource type="Texture2D" uid="uid://coueki5wa7i5g" path="res://models/textures/rock_wall_texture.png" id="2_6o5bf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tvojl")
+shader_parameter/texture_albedo = ExtResource("2_6o5bf")
