@@ -17,8 +17,8 @@ public partial class DayNight : WorldEnvironment
             WaitTime = 60.0d
         };
         timer.Timeout += ChangeDayNight;
-        timer.Start();
         AddChild(timer);
+        timer.Start();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

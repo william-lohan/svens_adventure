@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://scripts/DayNight.cs" id="2_srsvt"]
 [ext_resource type="Texture2D" uid="uid://drfoblgtpn5nt" path="res://textures/CRT12x6xcfl.png" id="3_jtbof"]
 [ext_resource type="Environment" uid="uid://d3ofrw12vtl6v" path="res://environment/environment.tres" id="3_phsfk"]
-[ext_resource type="Script" path="res://scripts/RotateCamera.cs" id="7_42sbr"]
 [ext_resource type="Script" path="res://scripts/Player.cs" id="7_a7f3t"]
+[ext_resource type="Script" path="res://scripts/CameraControl.cs" id="8_mtu4l"]
 [ext_resource type="PackedScene" uid="uid://y20b2sj0u0fm" path="res://models/crate.blend" id="10_kc0ud"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h3uac"]
@@ -56,7 +56,7 @@ grow_vertical = 2
 texture = ExtResource("3_jtbof")
 stretch_mode = 1
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="." groups=["Player"]]
 script = ExtResource("7_a7f3t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -66,12 +66,17 @@ shape = SubResource("CapsuleShape3D_m1r0k")
 [node name="sven" parent="Player" instance=ExtResource("2_j276v")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="CameraPivot" type="Node3D" parent="Player"]
-script = ExtResource("7_42sbr")
-speed = 0.5
+[node name="CameraControl" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("8_mtu4l")
 
-[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.932324, 0.361625, 0, -0.361625, 0.932324, 0, 1.728, 2)
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraControl"]
+spring_length = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraControl/SpringArm3D"]
+
+[node name="PlayerLookAtTarget" type="Node3D" parent="CameraControl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
