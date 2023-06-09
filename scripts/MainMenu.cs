@@ -30,7 +30,9 @@ public partial class MainMenu : Control
     }
 
     public void _OnOptionsButtonPressed()
-    {}
+    {
+        GetParent().AddChild(optionsMenu.Instantiate());
+    }
 
     public void _OnQuitButtonPressed()
     {

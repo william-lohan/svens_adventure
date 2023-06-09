@@ -67,5 +67,16 @@ public partial class Player : CharacterBody3D
 
 		Velocity = velocity;
 		MoveAndSlide();
+
+        // handle collision
+        int count = GetSlideCollisionCount();
+        for (int i = 0; i < count; i++)
+        {
+            KinematicCollision3D collision = GetSlideCollision(i);
+            if (collision.GetCollider() is Crate crateCollision)
+            {
+                crateCollision.Push();
+            }
+        }
 	}
 }
