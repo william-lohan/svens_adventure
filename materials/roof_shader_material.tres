@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://byc8rstswvy3i"]
+
+[ext_resource type="Shader" path="res://shaders/jitter_unlit.gdshader" id="1_u7yte"]
+[ext_resource type="Texture2D" uid="uid://cdi0km81b3cie" path="res://models/textures/roof_texture.png" id="2_ubmy5"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_u7yte")
+shader_parameter/snapScale = 50.0
+shader_parameter/texture_albedo = ExtResource("2_ubmy5")

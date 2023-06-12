@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dyj2trc53eywb"]
+
+[ext_resource type="Shader" path="res://shaders/jitter_unlit.gdshader" id="1_f8hhk"]
+[ext_resource type="Texture2D" uid="uid://ytqj1mckkhs" path="res://models/textures/wood.png" id="2_i8t23"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_f8hhk")
+shader_parameter/snapScale = 80.0
+shader_parameter/texture_albedo = ExtResource("2_i8t23")

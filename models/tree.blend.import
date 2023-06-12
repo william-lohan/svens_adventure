@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://csd5iwk60orio"
-path="res://.godot/imported/house.blend-9434b2ae11d6de1288e805b36f9d1b06.scn"
+uid="uid://hh04jeanvene"
+path="res://.godot/imported/tree.blend-773e446c2c26ace26cf8e0072675b947.scn"
 
 [deps]
 
-source_file="res://models/house.blend"
-dest_files=["res://.godot/imported/house.blend-9434b2ae11d6de1288e805b36f9d1b06.scn"]
+source_file="res://models/tree.blend"
+dest_files=["res://.godot/imported/tree.blend-773e446c2c26ace26cf8e0072675b947.scn"]
 
 [params]
 
@@ -23,28 +23,16 @@ meshes/create_shadow_meshes=false
 meshes/light_baking=0
 meshes/lightmap_texel_size=0.2
 skins/use_named_skins=true
-animation/import=false
+animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
-"RoofMaterial": {
+"FoliageMaterial": {
 "use_external/enabled": true,
-"use_external/path": "res://materials/roof_shader_material.tres"
-},
-"RugMaterial": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/rug_shader_material.tres"
-},
-"TVMaterial": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/tv_shader_material.tres"
-},
-"WallMaterial": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/house_wall_shader_material.tres"
+"use_external/path": "res://materials/grass_shader_material.tres"
 },
 "WoodMaterial": {
 "use_external/enabled": true,
@@ -52,17 +40,7 @@ _subresources={
 }
 },
 "meshes": {
-"house-9434b2ae11d6de1288e805b36f9d1b06_HouseMesh": {
-"generate/lightmap_uv": 2,
-"generate/lods": 2,
-"generate/shadow_meshes": 2,
-"lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
-"save_to_file/enabled": false,
-"save_to_file/make_streamable": "",
-"save_to_file/path": ""
-},
-"house-9434b2ae11d6de1288e805b36f9d1b06_PlayStationMesh": {
+"tree-773e446c2c26ace26cf8e0072675b947_Cube": {
 "generate/lightmap_uv": 2,
 "generate/lods": 2,
 "generate/shadow_meshes": 2,

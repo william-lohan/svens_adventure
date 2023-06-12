@@ -55,7 +55,7 @@ speed = 0.5
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
 
-[node name="world" parent="." instance=ExtResource("2_y3ehq")]
+[node name="World" parent="." instance=ExtResource("2_y3ehq")]
 
 [node name="Menu" type="Control" parent="." node_paths=PackedStringArray("firstControl")]
 layout_mode = 3

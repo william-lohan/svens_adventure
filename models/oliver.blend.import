@@ -3629,6 +3629,12 @@ _subresources={
 "slices/amount": null
 }
 },
+"materials": {
+"Material": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/oliver_shader_material.tres"
+}
+},
 "meshes": {
 "oliver-4cb74209162c461cfe895cbeae21e9f1_BodyMesh": {
 "generate/lightmap_uv": 2,

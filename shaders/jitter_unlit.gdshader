@@ -3,9 +3,10 @@ render_mode cull_disabled, specular_disabled, skip_vertex_transform, shadows_dis
 
 uniform sampler2D texture_albedo: source_color, filter_nearest;
 
+uniform float snapScale = 50.0f;
+
 float snap(float value)
 {
-    float snapScale = 50.0f;
     return floor(value * snapScale)/snapScale;
 }
 

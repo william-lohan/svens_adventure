@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c0g3lywbb57c5"]
+
+[ext_resource type="Shader" path="res://shaders/jitter_unlit.gdshader" id="1_kjlyu"]
+[ext_resource type="Texture2D" uid="uid://rai7qcdgmq6i" path="res://models/textures/rug_texture.png" id="2_yy6lk"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_kjlyu")
+shader_parameter/snapScale = 100.0
+shader_parameter/texture_albedo = ExtResource("2_yy6lk")

@@ -1,21 +1,17 @@
 using Godot;
 using System;
-using System.Runtime.CompilerServices;
 
-public partial class Crate : RigidBody3D
+public partial class Oliver : RigidBody3D
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+        AnimationPlayer animationPlayer = GetNode<AnimationPlayer>("oliver/AnimationPlayer");
+        animationPlayer.Play("IdleTrack");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 	}
-
-    public void Push(Vector3 velocity)
-    {
-        MoveAndCollide(velocity);
-    }
 }

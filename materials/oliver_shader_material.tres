@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dycse4byr5vta"]
+
+[ext_resource type="Shader" path="res://shaders/jitter_unlit.gdshader" id="1_iim3h"]
+[ext_resource type="Texture2D" uid="uid://dfook5lwm755l" path="res://models/textures/oliver_texture.png" id="2_c2tkr"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_iim3h")
+shader_parameter/snapScale = 50.0
+shader_parameter/texture_albedo = ExtResource("2_c2tkr")
